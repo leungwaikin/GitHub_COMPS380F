@@ -12,6 +12,11 @@
         <title>Main Page</title>
     </head>
     <body>
+        <a href="/HelloSpring/login">Login</a>
         <h1>${msg}</h1>
+        Here is the item on market:
+        XXXXXXXX
+        <br>
+        <a href="/HelloSpring/additem">Add item</a>
     </body>
 </html>

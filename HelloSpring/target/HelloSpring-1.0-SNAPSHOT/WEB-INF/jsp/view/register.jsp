@@ -31,5 +31,6 @@
             <div style="color: red">${error}</div>
  
     </form:form>
+<a href="/HelloSpring/login">Login</a>
 </body>
 </html>

@@ -12,7 +12,7 @@
     <form:form name="itemsubmitForm" method="POST">
    <input type="hidden" name="userName" value="XXXX to be insert">
    <input type="hidden" name="status" value="available">
-   <input type="hidden" name="bidnumbeer" value="0">
+   <input type="hidden" name="bidnumber" value="0">
             <table>
                 <tr>
                     <td>Item Description</td>
@@ -25,6 +25,10 @@
                 <tr>
                     <td>Expected Price</td>
                     <td><input type="text" name="price" /></td>
+                </tr>   
+                <tr>
+                    <td>Comments</td>
+                    <td><input type="text" name="comment" /></td>
                 </tr>   
                 <tr>
                     <td></td>

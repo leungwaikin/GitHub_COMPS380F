@@ -15,6 +15,10 @@ public class DefaultController {
     public String index(ModelMap map) {
         return "myindexstatic";
     }
+    @RequestMapping(value = "/mainpage", method = RequestMethod.GET)
+    public String mainpage(ModelMap map) {
+        return "mainpage";
+    }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap map) {
@@ -49,9 +53,19 @@ public class DefaultController {
      
     }
     @RequestMapping(value = "/additem", method = RequestMethod.GET)
-    public String item_page(ModelMap map) {
+    public String additem_page(ModelMap map) {
         return "item";
     }
+     @RequestMapping(value = "/additem", method = RequestMethod.POST)
+    public String additem_pagepost(Model model, @ModelAttribute("ItemBean") ItemBean itemBean) {
+        model.addAttribute("des",itemBean.getDescription());
+        model.addAttribute("pri",itemBean.getPrice());
+        model.addAttribute("own","ZZZ");
+        model.addAttribute("curr","ZZZ");
+        model.addAttribute("des",itemBean.getComment());
+        return "detail";
+    }
+    
     @RequestMapping("/dynamic")
     public String dynamicindex(ModelMap map) {
         map.addAttribute("hello", "Welcome to COMPS380F Spring Lecture !");
