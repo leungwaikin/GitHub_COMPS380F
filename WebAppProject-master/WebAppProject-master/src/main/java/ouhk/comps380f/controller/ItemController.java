@@ -264,7 +264,7 @@ public class ItemController {
         }
         if (item == null
                 || (!request.isUserInRole("ROLE_ADMIN")
-                && !principal.getName().equals(item.getCustomerName()))) {
+               && principal.getName().equals(item.getCustomerName()))) {
             return new ModelAndView(new RedirectView("/item/list", true));
         }
         ModelAndView modelAndView = new ModelAndView("bid");
@@ -288,7 +288,7 @@ public class ItemController {
         Item item = this.itemDatabase.get(itemId);
         if (item == null
                 || (!request.isUserInRole("ROLE_ADMIN")
-                && !principal.getName().equals(item.getCustomerName()))) {
+                && principal.getName().equals(item.getCustomerName()))) {
             return new RedirectView("/item/list", true);
         }
         

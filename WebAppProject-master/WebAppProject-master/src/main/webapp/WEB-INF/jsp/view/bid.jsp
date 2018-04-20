@@ -40,7 +40,7 @@
                     <div class="form-group">
                     <form:label path="subject">Subject</form:label><br/>
                     </div>
-                    <form:input type="text" path="subject" /><br/><br/>
+                    ${itemId}<br/><br/>
                  
                     
                     <div class="form-group">
@@ -49,7 +49,7 @@
                     <form:input type="text" path="price" /><br/><br/>
        
                      <div class="form-group">
-                     <form:input type="hidden" path="numberofbid" value="0" /><br/><br/>
+                     <form:input type="hidden" path="numberofbid" value="${numberofbid}" /><br/><br/>
                     </div>
                     <input type="submit" value="Submit"/>
                 </form:form>
