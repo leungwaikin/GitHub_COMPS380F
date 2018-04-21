@@ -56,7 +56,7 @@
                     <div class="form-group">
                     <form:label path="price">Price</form:label><br/>
                     </div>
-                    <form:input type="text" path="price" /><br/><br/>
+                    <form:input type="number" min="0" path="price" /><br/><br/>
                     
                      <div class="form-group">
                      <form:input type="hidden" path="numberofbid" value="0" /><br/><br/>
