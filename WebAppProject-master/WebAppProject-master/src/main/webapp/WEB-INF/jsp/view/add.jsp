@@ -54,7 +54,7 @@
                     </div>
                     
                     <div class="form-group">
-                    <form:label path="price">Price</form:label><br/>
+                    <form:label path="price">Expected price</form:label><br/>
                     </div>
                     <form:input type="text" path="price" /><br/><br/>
                     

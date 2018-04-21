@@ -19,6 +19,12 @@ INSERT INTO user_roles(username, role) VALUES ('keith', 'ROLE_ADMIN');
 INSERT INTO users VALUES ('andrew', 'andrewpw');
 INSERT INTO user_roles(username, role) VALUES ('andrew', 'ROLE_ADMIN');
 
+INSERT INTO users VALUES ('admin', 'admin');
+INSERT INTO user_roles(username, role) VALUES ('admin', 'ROLE_ADMIN');
+
+INSERT INTO users VALUES ('user', 'user');
+INSERT INTO user_roles(username, role) VALUES ('user', 'ROLE_USER');
+
 INSERT INTO users VALUES ('maria', 'mariapw');
 INSERT INTO user_roles(username, role) VALUES ('maria', 'ROLE_USER');
 

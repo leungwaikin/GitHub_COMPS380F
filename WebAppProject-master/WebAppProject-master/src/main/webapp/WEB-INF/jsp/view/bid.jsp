@@ -40,13 +40,13 @@
                     <div class="form-group">
                     <form:label path="subject">Subject</form:label><br/>
                     </div>
-                    ${itemId}<br/><br/>
+                    ${item.subject}<br/><br/>
                  
                     
                     <div class="form-group">
-                    <form:label path="price">New Price(Must Greater than current Price)</form:label><br/>
+                    <form:label path="price">Bid price</form:label><br/>
                     </div>
-                    <form:input type="text" path="price" /><br/><br/>
+                    <form:input type="number" path="price" /><br/><br/>
        
                      <div class="form-group">
                      <form:input type="hidden" path="numberofbid" value="${numberofbid}" /><br/><br/>

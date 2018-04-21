@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <title>Bidding web</title>
@@ -16,7 +17,7 @@
                         <a class="nav-link" href="<c:url value="/item" />">Home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Create Item<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="<c:url value="/item/create" />">Create Item<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <security:authorize access = "isAnonymous()">
@@ -31,29 +32,28 @@
                 </security:authorize>
             </div>
         </nav>
-
-
         <div class="container">
-            <div class="jumbotron">   
-                 <h1 class="display-4">Bid a Item</h1>
-                <form:form method="POST" enctype="multipart/form-data" modelAttribute="itemForm">
-                    <div class="form-group">
-                    <form:label path="subject">Subject</form:label><br/>
-                    </div>
-                    ${item.subject}<br/><br/>
-                 
-                    
-                    <div class="form-group">
-                    <form:label path="price">Bid price</form:label><br/>
-                    </div>
-                    <form:input type="number" path="price" /><br/><br/>
-       
-                     <div class="form-group">
-                     <form:input type="hidden" path="numberofbid" value="${numberofbid}" /><br/><br/>
-                    </div>
-                    <input type="submit" value="Submit"/>
-                </form:form>
+            <div class="jumbotron">
+                <h1 class="display-4">Item #${itemId}: <c:out value="${item.subject}" /></h1>
+                <security:authorize access = "!isAnonymous()">
+                    <p class="lead">
+                            <security:authorize access="hasRole('ADMIN') or principal.username=='${item.customerName}'">
+                            [<a href="<c:url value="/item/endWithNoWinner/${itemId}" />">End the bid with no winner</a>]
+                            </security:authorize>
+                    </p>
+                </security:authorize>
+                <br /><br />
+                <p class="lead">
+                   <c:if test="${!empty item.bid}" >
+                       Bidder: <br/></br>
+                    <c:forEach var="bidderItem" items="${item.bid}">
+                    <i> ${bidderItem}   [<a href="<c:url value="/item/${itemId}/endWithWinner/${bidderItem}" />">End the bid with this winner</a>]</i>  
+                    <br /><br />
+                  </c:forEach>
+                   </c:if>
+                   
+                <p class="lead">  <a href="<c:url value="/item" />">Return to list items</a></p>
             </div>      
-        </div>      
+        </div>  
     </body>
 </html>

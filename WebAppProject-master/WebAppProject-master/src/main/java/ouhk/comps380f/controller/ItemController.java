@@ -2,6 +2,7 @@ package ouhk.comps380f.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +49,28 @@ public class ItemController {
         private Integer numberofbid;
         private String status;
         private String comment; 
-
+         private  Hashtable<String,Integer> bid;
+    
+  //  private Integer[] bidPrice;
+   // private String[] bidder;
+    private String winner;
+    
+   
+    public void setBid(Hashtable<String,Integer> bid){
+        this.bid=bid;
+    }
+    
+    public Hashtable<String,Integer>getBid(){
+       return bid;
+    }
+    
+    public void setWinner(String winner){
+        this.winner=winner;
+    }
+    
+    public String getWinner(){
+        return winner;
+    }
         public String getDescription() {
             return description;
         }
@@ -122,6 +144,12 @@ public class ItemController {
         item.setNumberofbid(form.getNumberofbid());
         item.setStatus(form.getStatus());
         item.setComment(form.getComment());
+        Hashtable<String,Integer> tempbid  = new Hashtable<String,Integer> (100);
+        //tempbid= item.getBid();
+        //tempbid.put("abc",1);
+        item.setBid(tempbid);
+       
+        
         for (MultipartFile filePart : form.getAttachments()) {
             Attachment attachment = new Attachment();
             attachment.setName(filePart.getOriginalFilename());
@@ -247,6 +275,46 @@ public class ItemController {
         return new RedirectView("/item/view/" + item.getId(), true);
     }
 
+    @RequestMapping(value = "endWithNoWinner/{itemId}", method = RequestMethod.GET)
+    public ModelAndView endWithNoWinner(@PathVariable("itemId") long itemId,
+            Principal principal, HttpServletRequest request) {
+        Item item = this.itemDatabase.get(itemId);
+        item.setStatus("No winner");
+        if(principal == null){
+            return new ModelAndView(new RedirectView("/item/list", true));
+        }
+        if (item == null
+                || (!request.isUserInRole("ROLE_ADMIN")
+                && !principal.getName().equals(item.getCustomerName()))) {
+            return new ModelAndView(new RedirectView("/item/list", true));
+        }
+        ModelAndView modelAndView = new ModelAndView("view");
+        modelAndView.addObject("itemId", Long.toString(itemId));
+        modelAndView.addObject("item", item);
+          this.itemDatabase.put(item.getId(), item);
+        return modelAndView;
+    }
+    
+     @RequestMapping(value = "{itemId}/endWithWinner/{bidderItem}", method = RequestMethod.GET)
+    public ModelAndView endWithWinner(@PathVariable("bidderItem") String bidderItem,@PathVariable("itemId") long itemId,
+            Principal principal, HttpServletRequest request) {
+        Item item = this.itemDatabase.get(itemId);
+        item.setStatus(bidderItem+"(Winner)");
+        if(principal == null){
+            return new ModelAndView(new RedirectView("/item/list", true));
+        }
+        if (item == null
+                || (!request.isUserInRole("ROLE_ADMIN")
+                && !principal.getName().equals(item.getCustomerName()))) {
+            return new ModelAndView(new RedirectView("/item/list", true));
+        }
+        ModelAndView modelAndView = new ModelAndView("view");
+        modelAndView.addObject("itemId", Long.toString(itemId));
+        modelAndView.addObject("item", item);
+          this.itemDatabase.put(item.getId(), item);
+        return modelAndView;
+    }
+    
     @RequestMapping(value = "delete/{itemId}", method = RequestMethod.GET)
     public String deleteItem(@PathVariable("itemId") long itemId) {
         if (this.itemDatabase.containsKey(itemId)) {
@@ -281,6 +349,34 @@ public class ItemController {
 
         return modelAndView;
     }
+    //endbid
+     @RequestMapping(value = "endOfbid/{itemId}", method = RequestMethod.GET)
+    public ModelAndView endBid(@PathVariable("itemId") long itemId,
+            Principal principal, HttpServletRequest request) {
+        Item item = this.itemDatabase.get(itemId);
+        if(principal == null){
+            return new ModelAndView(new RedirectView("/item/list", true));
+        }
+        if (item == null
+                || (!request.isUserInRole("ROLE_ADMIN")
+               && principal.getName().equals(item.getCustomerName()))) {
+            return new ModelAndView(new RedirectView("/item/list", true));
+        }
+        ModelAndView modelAndView = new ModelAndView("endBid");
+        modelAndView.addObject("itemId", Long.toString(itemId));
+        modelAndView.addObject("item", item);
+
+        Form itemForm = new Form();
+        itemForm.setSubject(item.getSubject());
+        //Newly added
+        itemForm.setPrice(item.getPrice());
+        itemForm.setNumberofbid(item.getNumberofbid());
+       // itemForm.setBid(item.getBid());
+        
+        modelAndView.addObject("itemForm", itemForm);
+
+        return modelAndView;
+    }
  @RequestMapping(value = "bid/{itemId}", method = RequestMethod.POST)
     public View editBid(@PathVariable("itemId") long itemId, Form form,
             Principal principal, HttpServletRequest request)
@@ -291,17 +387,47 @@ public class ItemController {
                 && principal.getName().equals(item.getCustomerName()))) {
             return new RedirectView("/item/list", true);
         }
-        
-        item.setSubject(form.getSubject());
-       
+        //working
+      Integer tempid=(int)itemId;
+        Hashtable<String,Integer> tempbid  = new Hashtable<String,Integer>(100);
+        tempbid= item.getBid();
+        Integer price = Integer.parseInt(form.price);
+        tempbid.put(principal.getName(),price);
+        item.setBid(tempbid);
+    
         //Newly added
         
-        item.setPrice(form.getPrice());
+        //item.setPrice(form.getPrice());
+        
         int tempnob=form.getNumberofbid()+1;
         item.setNumberofbid(tempnob);
-        
+        item.setSubject(item.getSubject());
+        item.setDescription(item.getDescription());
+        item.setPrice(item.getPrice());
+        item.setNumberofbid(item.getNumberofbid());
+        item.setStatus(item.getStatus());
        
+        
         this.itemDatabase.put(item.getId(), item);
         return new RedirectView("/item/view/" + item.getId(), true);
+        /*        item.setSubject(form.getSubject());
+       
+        //Newly added
+        item.setDescription(form.getDescription());
+        item.setPrice(form.getPrice());
+        item.setNumberofbid(form.getNumberofbid());
+        item.setStatus(form.getStatus());
+        item.setComment(form.getComment());
+        for (MultipartFile filePart : form.getAttachments()) {
+            Attachment attachment = new Attachment();
+            attachment.setName(filePart.getOriginalFilename());
+            attachment.setMimeContentType(filePart.getContentType());
+            attachment.setContents(filePart.getBytes());
+            if (attachment.getName() != null && attachment.getName().length() > 0
+                    && attachment.getContents() != null && attachment.getContents().length > 0) {
+                item.addAttachment(attachment);
+            }
+        }
+        this.itemDatabase.put(item.getId(), item);*/
     }
 }

@@ -45,6 +45,9 @@
                         <security:authorize access="hasRole('USER') and principal.username!='${item.customerName}'">
                             [<a href="<c:url value="/item/bid/${itemId}" />">Bid</a>]
                         </security:authorize>
+                            <security:authorize access="hasRole('ADMIN') or (principal.username=='${item.customerName}' && '${item.status}'!='No Winner')">
+                            [<a href="<c:url value="/item/endOfbid/${itemId}" />">End the bid</a>]
+                            </security:authorize>
                     </p>
                 </security:authorize>
                 <br /><br />
@@ -53,7 +56,7 @@
                   
                    
                     Description:<c:out value="${item.description}" /><br /><br /> </p>
-                    Price:<c:out value="${item.price}" /><br /><br /> </p>
+                    Expected Price:<c:out value="${item.price}" /><br /><br /> </p>
                     Number of bid:<c:out value="${item.numberofbid}" /><br /><br /> </p>
                     Status:<c:out value="${item.status}" /><br /><br /> </p>
                     Comment:<c:out value="${item.comment}" /><br /><br /> </p>

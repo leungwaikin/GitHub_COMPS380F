@@ -1,7 +1,9 @@
 package ouhk.comps380f.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 public class Item {
@@ -18,7 +20,28 @@ public class Item {
     private Integer numberofbid;
     private String status;
     private String comment; 
-
+    private Hashtable<String,Integer> bid;
+    
+  //  private Integer[] bidPrice;
+   // private String[] bidder;
+    private String winner;
+    
+   
+    public void setBid(Hashtable<String,Integer> bid){
+        this.bid=bid;
+    }
+    
+    public Hashtable<String,Integer> getBid(){
+       return bid;
+    }
+    
+    public void setWinner(String winner){
+        this.winner=winner;
+    }
+    
+    public String getWinner(){
+        return winner;
+    }
     public String getDescription() {
         return description;
     }
