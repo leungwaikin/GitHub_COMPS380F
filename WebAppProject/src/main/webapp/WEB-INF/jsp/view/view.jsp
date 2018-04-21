@@ -55,12 +55,12 @@
                                             <c:choose>
                                                 <c:when test="${status.first}">                                  
                                                     <div class="carousel-item active">
-                                                        <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
+                                                        <img class="d-block w-100"  src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
                                                     </div>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <div class="carousel-item">
-                                                        <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
+                                                        <img class="d-block w-100"  src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
                                                     </div>
                                                 </c:otherwise>
                                             </c:choose>
@@ -70,13 +70,13 @@
                                 <c:otherwise>
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
-                                            <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/resources/images/empty.png" />">
+                                            <img class="d-block w-100"  src="<c:url value="/resources/images/empty.png" />">
                                         </div>
                                         <div class="carousel-item">
-                                            <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/resources/images/empty.png" />">
+                                            <img class="d-block w-100"  src="<c:url value="/resources/images/empty.png" />">
                                         </div>
                                         <div class="carousel-item">
-                                            <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/resources/images/empty.png" />">
+                                            <img class="d-block w-100"  src="<c:url value="/resources/images/empty.png" />">
                                         </div>
                                     </div>
                                 </c:otherwise>
