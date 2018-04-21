@@ -56,11 +56,11 @@
                   
                    
                     Description:<c:out value="${item.description}" /><br /><br /> </p>
-
+<<<<<<< HEAD
                     Expected Price:<c:out value="${item.price}" /><br /><br /> </p>
-
+=======
                     Price:$<c:out value="${item.price}" /><br /><br /> </p>
-
+>>>>>>> a6d008b8fb9e4b0f48ffe5499b14b921345b5903
                     Number of bid:<c:out value="${item.numberofbid}" /><br /><br /> </p>
                     Status:<c:out value="${item.status}" /><br /><br /> </p>
                     Comment:<c:out value="${item.comment}" /><br /><br /> </p>
