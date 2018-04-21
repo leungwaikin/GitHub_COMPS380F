@@ -3,10 +3,10 @@
     <head>
         <title>Customer Support</title>
     </head>
-    <link rel="stylesheet" href="<c:url value="/resources/static/css/thumbnail-gallery.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/static/css/item-list.css" />">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
     <script>
-        baguetteBox.run('.tz-gallery');
+        baguetteBox.run('.item-gallery');
     </script>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -49,14 +49,14 @@
         </nav>
         <div class="container">
             <div class="jumbotron jumbotron-fluid">
-                <div class="container gallery-container">
+                <div class="container itemlist-container">
                     <h1 class="display-4">Items</h1>
                     <c:choose>
                         <c:when test="${fn:length(itemDatabase) == 0}">
                             <p class="lead"><i>There are no items in the system.</i></p> 
                         </c:when>
                         <c:otherwise>
-                            <div class="tz-gallery">
+                            <div class="item-gallery">
                             <div class="row">
                                 <c:forEach items="${itemDatabase}" var="item">
                                     <div class="col-sm-6 col-md-4">
