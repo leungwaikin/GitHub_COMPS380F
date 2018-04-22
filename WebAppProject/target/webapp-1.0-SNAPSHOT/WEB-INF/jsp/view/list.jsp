@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Customer Support</title>
+        <title>Bidding list</title>
     </head>
-    <link rel="stylesheet" href="<c:url value="/resources/static/css/thumbnail-gallery.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/static/css/item-list.css" />">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
     <script>
-        baguetteBox.run('.tz-gallery');
+        baguetteBox.run('.item-gallery');
     </script>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Bid You Like</a>
+            <a class="navbar-brand" href="#">BidderLand</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,7 +25,7 @@
 
                     <security:authorize access="hasRole('ADMIN')">
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/user" />">Manage User Accounts</a>
+                            <a class="nav-link" href="<c:url value="/user" />">Manage</a>
                         </li>
                     </security:authorize>
 
@@ -49,17 +49,17 @@
         </nav>
         <div class="container">
             <div class="jumbotron jumbotron-fluid">
-                <div class="container gallery-container">
+                <div class="container itemlist-container">
                     <h1 class="display-4">Items</h1>
                     <c:choose>
                         <c:when test="${fn:length(itemDatabase) == 0}">
                             <p class="lead"><i>There are no items in the system.</i></p> 
                         </c:when>
                         <c:otherwise>
-                            <div class="tz-gallery">
+                            <div class="item-gallery">
                             <div class="row">
                                 <c:forEach items="${itemDatabase}" var="item">
-                                    <div class="col-sm-6 col-md-4">
+                                    <div class="col-sm-4 col-md-4">
                                         <div class="thumbnail">
                                             <a class="lightbox" href="<c:url value="/item/view/${item.id}" />">
                                                 <c:choose>
@@ -67,14 +67,12 @@
                                                         <img src="<c:url value="/item/${item.id}/attachment/${item.attachments[0].name}" />" style="width:100%"/>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <img src="<c:url value="/resources/images/empty.png" />" style="width:100%"/>  
+                                                        <img src="<c:url value="/resources/images/upload-empty.png" />" style="width:100%"/>  
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <div class="caption">
-                                                    <h3>Item ${item.id}</h3>
-                                                    <p>Owner: <c:out value="${item.customerName}" /></p>
-                                                    <p>Item Name: <c:out value="${item.subject}" /></p>
-                                                    <p>Description: <c:out value="${item.body}" /></p>
+                                                    <h2><c:out value="${item.subject}" /></h2>                                              
+                                                    <h3>Number of bid(s): <c:out value="${fn:length(item.bidRecord)}"/></h3>                                                 
                                                 </div>
                                             </a>
                                             <security:authorize access = "!isAnonymous()">

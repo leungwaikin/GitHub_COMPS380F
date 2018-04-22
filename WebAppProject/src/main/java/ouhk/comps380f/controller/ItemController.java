@@ -59,7 +59,7 @@ public class ItemController {
     public static class Form {
 
         private String subject;
-        private String body;
+        private String description;
         private List<MultipartFile> attachments;
         private int price;
         private int bidprice;
@@ -82,12 +82,12 @@ public class ItemController {
             this.subject = subject;
         }
 
-        public String getBody() {
-            return body;
+        public String getDescription() {
+            return description;
         }
 
-        public void setBody(String body) {
-            this.body = body;
+        public void setDescription(String description) {
+            this.description = description;
         }
 
         public List<MultipartFile> getAttachments() {
@@ -137,8 +137,7 @@ public class ItemController {
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(Form form, Principal principal) throws IOException {
-        long itemId = itemService.createItem(principal.getName(),
-                form.getSubject(), form.getPrice(), form.getBidprice(), form.getBody(), form.getStatus(), form.getBidusername(), form.getAttachments());
+        long itemId = itemService.createItem(principal.getName(),form.getSubject(), form.getPrice(), form.getBidprice(), form.getDescription(), form.getStatus(), form.getBidusername(), form.getAttachments());
         return "redirect:/item/view/" + itemId;
     }
 

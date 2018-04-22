@@ -71,11 +71,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     @Transactional
     public long createItem(String customerName, String subject,
-            int price, int bidprice, String body, int status, String bidusername, List<MultipartFile> attachments) throws IOException {
+            int price, int bidprice, String description, int status, String bidusername, List<MultipartFile> attachments) throws IOException {
         Item item = new Item();
         item.setCustomerName(customerName);
         item.setSubject(subject);
-        item.setBody(body);
+        item.setDescription(description);
         item.setPrice(price);
         item.setBidprice(bidprice);
         item.setStatus(status);

@@ -24,3 +24,9 @@ INSERT INTO user_roles(username, role) VALUES ('maria', 'ROLE_USER');
 
 INSERT INTO users VALUES ('oliver', 'oliverpw');
 INSERT INTO user_roles(username, role) VALUES ('oliver', 'ROLE_USER');
+
+INSERT INTO users VALUES ('admin', 'admin');
+INSERT INTO user_roles(username, role) VALUES ('admin', 'ROLE_ADMIN');
+
+INSERT INTO users VALUES ('user', 'user');
+INSERT INTO user_roles(username, role) VALUES ('user', 'ROLE_USER');

@@ -80,7 +80,7 @@ public class BidUserController {
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public ModelAndView create() {
-        return new ModelAndView("addUser", "bidUser", new Form());
+        return new ModelAndView("register", "bidUser", new Form());
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)

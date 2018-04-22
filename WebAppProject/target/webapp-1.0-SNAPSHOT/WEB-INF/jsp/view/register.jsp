@@ -42,10 +42,10 @@
                     <form:label path="username">Username</form:label><br/>
                     <form:input type="text" path="username" /><br/><br/>
                     <form:label path="password">Password</form:label><br/>
-                    <form:input type="text" path="password" /><br/><br/>
+                     <input type="password" id="password" name="password" /><br/><br/>
                     <form:hidden path="roles" value="ROLE_USER"/>
                     <br /><br />
-                    <input type="submit" class="btn btn-primary" value="Add User"/>
+                    <input type="submit" class="btn btn-primary" value="Register"/>
                 </form:form>
             </div>
         </div>

@@ -23,7 +23,7 @@ public class Item implements Serializable {
     @Column(name = "name")
     private String customerName;
     private String subject;
-    private String body;
+    private String description;
     private int price;
     private int bidprice;
     private int status;
@@ -123,12 +123,12 @@ public class Item implements Serializable {
         this.subject = subject;
     }
 
-    public String getBody() {
-        return body;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Attachment> getAttachments() {

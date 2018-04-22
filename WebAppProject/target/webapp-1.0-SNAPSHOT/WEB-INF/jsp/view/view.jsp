@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Customer Support</title>
+        <title>View of ${item.subject}</title>
     </head>
     <script src="<c:url  value="/resources/static/js/bootstrap-magnify.min.js"/>"></script>
     <link rel="stylesheet" href="<c:url  value="/resources/static/css/bootstrap-magnify.min.css"/>">
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Bid You Like</a>
+            <a class="navbar-brand" href="#">BidderLand</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,7 +22,7 @@
                     </li>
                     <security:authorize access="hasRole('ADMIN')">
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/user" />">Manage User Accounts</a>
+                            <a class="nav-link" href="<c:url value="/user" />">Manage</a>
                         </li>
                     </security:authorize>
                 </ul>
@@ -42,11 +42,7 @@
             <div class="jumbotron">
                 <div class="row">
                     <div class="col-sm">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        
                             </ol>
                             <c:choose>
                                 <c:when test="${fn:length(item.attachments) > 0}">
@@ -55,12 +51,12 @@
                                             <c:choose>
                                                 <c:when test="${status.first}">                                  
                                                     <div class="carousel-item active">
-                                                        <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
+                                                        <img class="d-block w-100"  src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
                                                     </div>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <div class="carousel-item">
-                                                        <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
+                                                        <img class="d-block w-100"  src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
                                                     </div>
                                                 </c:otherwise>
                                             </c:choose>
@@ -68,17 +64,11 @@
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/resources/images/empty.png" />">
+                                   
+                                            <img class="d-block w-100"  src="<c:url value="/resources/images/upload-empty.png" />">
                                         </div>
-                                        <div class="carousel-item">
-                                            <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/resources/images/empty.png" />">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img class="d-block w-100" data-toggle="magnify" src="<c:url value="/resources/images/empty.png" />">
-                                        </div>
-                                    </div>
+                                      
+                                   
                                 </c:otherwise>
                             </c:choose>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -92,14 +82,8 @@
                         </div>
                     </div>
                     <div class="col-sm">
-                        <security:authorize access = "!isAnonymous()">
-                            <p class="lead">
-                                <security:authorize access="hasRole('ADMIN')">
-                                    <button class="btn btn-danger" type="button" onclick="window.location.href = '<c:url value="/item/delete/${itemId}" />'">Delete</button>
-                                </security:authorize>
-                            </p>
-                        </security:authorize>
-                        <table class="table table-striped">
+                     
+                        <table class="table table-sm">
                             <thead>
                                 <tr>
                                     <th scope="col" colspan="3"><h4 class="display-4">Item Name:<c:out value="${item.subject}" /></h4></th>
@@ -111,25 +95,26 @@
                                     <td colspan="2"><c:out value="${item.customerName}" /></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Buy it now :$</th>
+                                    <th scope="row">Expected price: </th>
                                     <td colspan="2"><c:out value="${item.price}" /></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Currency Bid :$</th>
-                                    <td> <c:out value="${item.bidprice}" /></td>
+                                    <th scope="row">Number of bid(s): </th>
+                                    <td> <c:out value="${fn:length(item.bidRecord)}" /></td>
                                     <c:choose>
-                                        <c:when test="${fn:length(item.bidRecord) <=0 }">
-                                            <td>No bid yet!</td>
-                                        </c:when>
-                                        <c:otherwise>
+                                        <c:when test="${fn:length(item.bidRecord) >0 }">
+                                           
+                                       
+                                    
                                             <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                    <c:out value="${fn:length(item.bidRecord)}"/> bids
+                                          detail
                                                 </button></td>
-                                            </c:otherwise>
+                                                 </c:when>
+                                         
                                         </c:choose>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Currency Bid Status: </th>
+                                    <th scope="row">Status: </th>
                                     <td>                            
                                         <c:choose>
                                             <c:when test="${item.status == 0}">
@@ -143,25 +128,48 @@
                                             </c:when>
                                         </c:choose></td>
                                 </tr>
+                                 <tr>
+                                    <th scope="row">Description:</th>
+                                    <td>                            
+                                       
+                                            <c:if test="${!empty item.description}">
+                                                <p class="lead"> <c:out value="${item.description}" /></p>
+                                            </c:if>
+                                         </td>
+                                </tr>
+                                <tr>
+                                    
+                                </tr>
                             </tbody>
                         </table>
-
+   <security:authorize access = "!isAnonymous()">
+                            <p class="lead">
+                                <security:authorize access="hasRole('ADMIN')">
+                                    <button class="btn btn-danger" type="button" onclick="window.location.href = '<c:url value="/item/delete/${itemId}" />'">Delete</button>
+                                </security:authorize>
+                                     <security:authorize access="principal.username=='${item.customerName}'">
+                                    <c:if test="${item.status == 1}">
+                                        <form method="POST" enctype="multipart/form-data" name="giveupbid" action="giveupbid">
+                                            <input type="hidden" name="id" value="${item.id}"/>
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                            <input type="submit" class="btn btn-danger" value="Give up the Bid"/>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${(!empty item.bidusername) and (!empty item.status)}">
+                                        <form method="POST" enctype="multipart/form-data" name="endform" action="endbid">
+                                            <input type="hidden" name="id" value="${item.id}"/>
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                            <input type="submit" class="btn btn-danger" value="End Bid with winner"/>
+                                        </form>
+                                    </c:if>
+                                </security:authorize>
+                            </p>
+                        </security:authorize>
+                           
                         <br /><br />
                         <div class="accordion" id="accordion">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                            Description
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <c:out value="${item.body}" />
-                                    </div>
-                                </div>
-                            </div>
+
+
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
@@ -173,7 +181,7 @@
                                     <div class="card-body">
                                         <c:choose>
                                             <c:when test = "${fn:length(item.comments) > 0}">
-                                                <table class="table table-sm">
+                                                <table class="table">
                                                     <tbody>
                                                         <c:forEach items="${item.comments}" var="acomment">
                                                             <tr>
@@ -188,7 +196,7 @@
                                                 </table>
                                             </c:when>
                                             <c:otherwise>
-                                                No Comment Now!!!!!
+                                                No Comment
                                             </c:otherwise>
                                         </c:choose>
                                         <hr class="my-4">
@@ -215,24 +223,7 @@
                                     </form>
                                 </c:if>
                             </security:authorize>
-                            <security:authorize access = "!isAnonymous()">
-                                <security:authorize access="principal.username=='${item.customerName}'">
-                                    <c:if test="${item.status == 1}">
-                                        <form method="POST" enctype="multipart/form-data" name="giveupbid" action="giveupbid">
-                                            <input type="hidden" name="id" value="${item.id}"/>
-                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                            <input type="submit" class="btn btn-danger" value="Give up the Bid"/>
-                                        </form>
-                                    </c:if>
-                                    <c:if test="${(empty item.bidusername) and (empty item.status)}">
-                                        <form method="POST" enctype="multipart/form-data" name="endform" action="endbid">
-                                            <input type="hidden" name="id" value="${item.id}"/>
-                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                            <input type="submit" class="btn btn-danger" value="End Bid with winner"/>
-                                        </form>
-                                    </c:if>
-                                </security:authorize>
-                            </security:authorize>
+                            
 
                         </div>
                     </div>      
