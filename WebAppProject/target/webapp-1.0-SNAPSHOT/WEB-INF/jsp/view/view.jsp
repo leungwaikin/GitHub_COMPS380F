@@ -152,11 +152,15 @@
                                 </c:if>
                             </security:authorize>
    <security:authorize access = "!isAnonymous()">
-                            <p class="lead">
+                            <table>
+                                <tr>
+                                    <td>
                                 <security:authorize access="hasRole('ADMIN')">
                                     <button class="btn btn-danger" type="button" onclick="window.location.href = '<c:url value="/item/delete/${itemId}" />'">Delete</button>
                                 </security:authorize>
+                                    </td>
                                      <security:authorize access="principal.username=='${item.customerName}'">
+                                         <td>
                                     <c:if test="${item.status == 1}">
                                         <form method="POST" enctype="multipart/form-data" name="giveupbid" action="giveupbid">
                                             <input type="hidden" name="id" value="${item.id}"/>
@@ -164,7 +168,9 @@
                                             <input type="submit" class="btn btn-danger" value="Give up the Bid"/>
                                         </form>
                                     </c:if>
-                                    <c:if test="${(!empty item.bidusername) and (!empty item.status)}">
+                                     </td>
+                                    <td>
+                                    <c:if test="${(item.bidusername!='NULL') and (item.status!=2)}">
                                         <form method="POST" enctype="multipart/form-data" name="endform" action="endbid">
                                             <input type="hidden" name="id" value="${item.id}"/>
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -172,7 +178,9 @@
                                         </form>
                                     </c:if>
                                 </security:authorize>
-                            </p>
+                            </td>
+                            </tr>
+                            </table>
                         </security:authorize>
                            
                         <br /><br />
