@@ -7,16 +7,14 @@
     <link rel="stylesheet" href="<c:url  value="/resources/static/css/bootstrap-magnify.min.css"/>">
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">BidderLand</a>
+            <a class="navbar-brand" href="<c:url value="/item" />">BidderLand</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/item" />">Home</a>
-                    </li>
+                    
                     <li class="nav-item active">
                         <a class="nav-link" href="<c:url value="/item/create" />">Create Item<span class="sr-only">(current)</span></a>
                     </li>
@@ -27,7 +25,7 @@
                     </security:authorize>
                 </ul>
                 <security:authorize access = "isAnonymous()">
-                    <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/login" />'">Login</button>
+                   <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/login" />'">Login</button>
                 </security:authorize>
                 <security:authorize access = "!isAnonymous()">
                     <c:url var="logoutUrl" value="/logout"/>
@@ -71,14 +69,7 @@
                                    
                                 </c:otherwise>
                             </c:choose>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                            
                         </div>
                     </div>
                     <div class="col-sm">
@@ -97,6 +88,11 @@
                                 <tr>
                                     <th scope="row">Expected price: </th>
                                     <td colspan="2"><c:out value="${item.price}" /></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Current bid price : </th>
+                                    <td> <c:out value="${item.bidprice}" /></td>
+                                   
                                 </tr>
                                 <tr>
                                     <th scope="row">Number of bid(s): </th>
@@ -118,13 +114,13 @@
                                     <td>                            
                                         <c:choose>
                                             <c:when test="${item.status == 0}">
-                                                <p class="lead">The Bid is ended by owner.</p>
+                                                <p class="lead">The Bid is expired with no winner.</p>
                                             </c:when>
                                             <c:when test="${item.status == 1}">
-                                                <p class="lead">The Bid is running now!!</p>
+                                                <p class="lead">available</p>
                                             </c:when>
                                             <c:when test="${item.status == 2}">
-                                                <c:out value="The Bid is end! Winner is ${item.bidusername}" />
+                                                <c:out value="The Bid winner is ${item.bidusername}" />
                                             </c:when>
                                         </c:choose></td>
                                 </tr>
@@ -142,6 +138,19 @@
                                 </tr>
                             </tbody>
                         </table>
+                                        <security:authorize access = "!isAnonymous() and principal.username!='${item.customerName}'">
+                                <c:if test="${item.status == 1}">
+                                    <form method="POST" enctype="multipart/form-data" name="Bidform" action="bid">
+                                            
+                                            <label name="bidprice">Bid the item(must be higher than the current bid price):</label>
+                                            <input type="number" maxlength="20" name="bidprice" />
+                                       
+                                        <input type="hidden" name="id" value="${item.id}"/>
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <input type="submit" class="btn btn-primary mb-2" value="Submit"/>
+                                    </form>
+                                </c:if>
+                            </security:authorize>
    <security:authorize access = "!isAnonymous()">
                             <p class="lead">
                                 <security:authorize access="hasRole('ADMIN')">
@@ -207,22 +216,12 @@
                                                 <input class="btn btn-primary mb-2" type="submit" value="Leave My Comment"/>
                                             </form:form>
                                         </security:authorize>
+                                                </br>
+                                                </br></br>
                                     </div>
                                 </div>
                             </div>
-                            <security:authorize access = "!isAnonymous() and principal.username!='${item.customerName}'">
-                                <c:if test="${item.status == 1}">
-                                    <form method="POST" enctype="multipart/form-data" name="Bidform" action="bid">
-                                        <div class="form-group">      
-                                            <label name="bidprice">I want to Bid:$</label><br/>
-                                            <input type="number" maxlength="20" name="bidprice" /><br/><br/>
-                                        </div>
-                                        <input type="hidden" name="id" value="${item.id}"/>
-                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="submit" class="btn btn-primary mb-2" value="Bid"/>
-                                    </form>
-                                </c:if>
-                            </security:authorize>
+                        
                             
 
                         </div>

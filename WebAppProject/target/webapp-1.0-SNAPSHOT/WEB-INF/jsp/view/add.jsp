@@ -12,14 +12,14 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/item" />">Home</a>
-                    </li>
+                 
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Create Item<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
+                          <security:authorize access="hasRole('ADMIN')">
                      <a class="nav-link" href="<c:url value="/user" />">Manage<span class="sr-only">(current)</span></a>
+                       </security:authorize>
                 </li>
                 </ul>
                 <security:authorize access = "isAnonymous()">

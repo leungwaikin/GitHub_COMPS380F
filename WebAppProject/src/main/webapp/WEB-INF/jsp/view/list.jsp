@@ -10,15 +10,13 @@
     </script>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">BidderLand</a>
+            <a class="navbar-brand" href="<c:url value="/item" />">BidderLand</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/item/create" />">Create Item</a>
                     </li>
@@ -30,10 +28,7 @@
                     </security:authorize>
 
                 </ul>
-                <security:authorize access = "isAnonymous()">
-                    <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/login" />'">Login</button>
-                    <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/user/create" />'">Registration</button>
-                </security:authorize>         
+                      
 
                 <security:authorize access = "!isAnonymous()">
 
@@ -50,7 +45,12 @@
         <div class="container">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container itemlist-container">
-                    <h1 class="display-4">Items</h1>
+                    <h1 class="display-3">Welcome to BidderLand!</h1>
+                    <security:authorize access = "isAnonymous()">
+                    <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/login" />'">Login</button>
+                    <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/user/create" />'">Register</button>
+                </security:authorize>   
+                    </br></br></br>
                     <c:choose>
                         <c:when test="${fn:length(itemDatabase) == 0}">
                             <p class="lead"><i>There are no items in the system.</i></p> 

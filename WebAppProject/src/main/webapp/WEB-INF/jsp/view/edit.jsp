@@ -5,16 +5,14 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">BidderLand</a>
+            <a class="navbar-brand" href="<c:url value="/item" />">BidderLand</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/item" />">Home</a>
-                    </li>
+              
                     <li class="nav-item ">
                         <a class="nav-link" href="<c:url value="/item/create" />">Create Item<span class="sr-only">(current)</span></a>
                     </li>
@@ -38,7 +36,7 @@
         </nav>
         <div class="container">
             <div class="jumbotron">   
-                <h1 class="display-4">Update User</h1>
+                <h1 class="display-4">Update User Information</h1>
                 <form:form method="POST" enctype="multipart/form-data" modelAttribute="UserForm">
                     <div class="form-group">
                         <form:label path="username">username</form:label><br/>
@@ -46,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <form:label path="password">password</form:label><br/>
-                        <form:input type="text" path="password" required="required" /><br/><br/>
+                          <input type="password" id="password" name="password" required/><br/><br/><br/><br/>
                     </div>
                     <div class="form-group">
                          <form:label path="roles">Roles</form:label><br/>

@@ -3,16 +3,14 @@
     <title>User management</title>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">BidderLand</a>
+            <a class="navbar-brand" href="<c:url value="/item" />">BidderLand</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="">
-                        <a class="nav-link" href="<c:url value="/item" />">Home</a>
-                    </li>
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/item/create" />">Create Item</a>
                     </li>
@@ -38,10 +36,10 @@
         </nav>
         <div class="container">
             <div class="jumbotron">
-                <h2>Users</h2>
+                <h2>Users management</h2>
                 <c:choose>
                     <c:when test="${fn:length(bidUsers) == 0}">
-                        <i>There are no users in the system.</i>
+                        <i>There are no users .</i>
                     </c:when>
                     <c:otherwise>
 
@@ -54,7 +52,7 @@
                             <c:forEach items="${bidUsers}" var="user">
                                 <tbody>
                                     <tr>
-                                        <td>${user.username}</td><td>${user.password}</td>
+                                        <td>${user.username}</td><td><text type="password">${user.password}</text></td>
                                         <td>
                                             <c:forEach items="${user.roles}" var="role" varStatus="status">
                                                 <c:if test="${!status.first}">, </c:if>
@@ -62,14 +60,12 @@
                                             </c:forEach>
                                         </td>
                                         <td>               
-                                            <security:authorize access = "principal.username=='${user.username}'">
-                                                <button disabled type="button" class="btn btn-primary" onclick="window.location.href = '<c:url value="/user/edit/${user.username}" />'">Update</button>
-                                                <button disabled type="button" class="btn btn-primary" onclick="window.location.href = '<c:url value="/user/delete/${user.username}" />'">Delete</button>  
-                                            </security:authorize>
+                              
                                             <security:authorize access = "principal.username!='${user.username}'">
                                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '<c:url value="/user/edit/${user.username}" />'">Update</button>
                                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '<c:url value="/user/delete/${user.username}" />'">Delete</button>
                                             </security:authorize>
+                                  
                                         </td>
                                     </tr>
                                 </tbody>
@@ -77,7 +73,6 @@
                         </table>
                     </c:otherwise>
                 </c:choose>
-                <button type="button" class="btn btn-primary" onclick="window.location.href = '<c:url value="/item" />'">Return to Home</button>
 
             </div> </div> 
 
