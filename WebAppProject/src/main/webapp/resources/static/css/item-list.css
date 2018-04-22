@@ -36,6 +36,10 @@ body {
     border: none;
     transition: 0.15s ease-in-out;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+    text-align:center;
+}
+.item-header{
+  text-align:center;     
 }
 
 .item-gallery .thumbnail:hover {

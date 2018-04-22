@@ -45,11 +45,13 @@
         <div class="container">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container itemlist-container">
+                    <div class="item-header">
                     <h1 class="display-3">Welcome to BidderLand!</h1>
                     <security:authorize access = "isAnonymous()">
                     <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/login" />'">Login</button>
                     <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/user/create" />'">Register</button>
-                </security:authorize>   
+                </security:authorize>
+                    </div>
                     </br></br></br>
                     <c:choose>
                         <c:when test="${fn:length(itemDatabase) == 0}">
