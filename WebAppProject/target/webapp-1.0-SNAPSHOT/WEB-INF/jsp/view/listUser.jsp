@@ -2,6 +2,7 @@
 <html>
     <title>User management</title>
     <body>
+    <link rel="stylesheet" href="<c:url value="/resources/static/css/item-list.css" />">        
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="<c:url value="/item" />">BidderLand</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,13 +23,13 @@
 
                 </ul>
                 <security:authorize access = "isAnonymous()">
-                    <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/login" />'">Login</button>
-                    <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/user/create" />'">Registration</button>
+                    <button class="btn btn-secondary" type="button" onclick="window.location.href = '<c:url value="/login" />'">Login</button>
+                    <button class="btn btn-secondary" type="button" onclick="window.location.href = '<c:url value="/user/create" />'">Registration</button>
                 </security:authorize>
                 <security:authorize access = "!isAnonymous()">
                     <c:url var="logoutUrl" value="/logout"/>
                     <form action="${logoutUrl}" method="post">
-                        <input class="btn btn-dark" type="submit" value="Log out" />
+                        <input class="btn btn-secondary" type="submit" value="Log out" />
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </security:authorize>

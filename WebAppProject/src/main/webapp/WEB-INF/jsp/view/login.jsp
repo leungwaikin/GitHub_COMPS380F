@@ -3,6 +3,7 @@
     <head>
         <title>Login</title>
     </head>
+    <link rel="stylesheet" href="<c:url value="/resources/static/css/item-list.css" />">    
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="<c:url value="/item" />">BidderLand</a>
@@ -21,7 +22,7 @@
                 <security:authorize access = "!isAnonymous()">
                     <c:url var="logoutUrl" value="/logout"/>
                     <form action="${logoutUrl}" method="post">
-                        <input class="btn btn-dark" type="submit" value="Log out" />
+                        <input class="btn btn-secondary" type="submit" value="Log out" />
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </security:authorize>

@@ -3,6 +3,7 @@
     <head>
         <title>View of ${item.subject}</title>
     </head>
+    <link rel="stylesheet" href="<c:url value="/resources/static/css/item-list.css" />">    
     <script src="<c:url  value="/resources/static/js/bootstrap-magnify.min.js"/>"></script>
     <link rel="stylesheet" href="<c:url  value="/resources/static/css/bootstrap-magnify.min.css"/>">
     <body>
@@ -25,12 +26,12 @@
                     </security:authorize>
                 </ul>
                 <security:authorize access = "isAnonymous()">
-                   <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/login" />'">Login</button>
+                   <button class="btn btn-secondary" type="button" onclick="window.location.href = '<c:url value="/login" />'">Login</button>
                 </security:authorize>
                 <security:authorize access = "!isAnonymous()">
                     <c:url var="logoutUrl" value="/logout"/>
                     <form action="${logoutUrl}" method="post">
-                        <input class="btn btn-dark" type="submit" value="Log out" />
+                        <input class="btn btn-secondary" type="submit" value="Log out" />
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </security:authorize>

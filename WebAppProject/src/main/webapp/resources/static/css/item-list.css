@@ -70,3 +70,7 @@ body {
 .baguetteBox-button {
     background-color: transparent !important;
 }
+
+form{
+    margin:1%;  
+}
