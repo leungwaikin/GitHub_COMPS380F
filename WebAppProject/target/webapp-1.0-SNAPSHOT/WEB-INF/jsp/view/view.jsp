@@ -176,7 +176,7 @@
                                     </c:if>
                                      </td>
                                     <td>
-                                    <c:if test="${(item.bidusername!='commNULL') and (item.status!=2)}">
+                                    <c:if test="${(item.bidusername!='NULL') and (item.status!=2)}">
                                         <form method="POST" enctype="multipart/form-data" name="endform" action="endbid">
                                             <input type="hidden" name="id" value="${item.id}"/>
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
