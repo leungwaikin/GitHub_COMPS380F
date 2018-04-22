@@ -12,10 +12,6 @@ import ouhk.comps380f.exception.AttachmentNotFound;
 import ouhk.comps380f.exception.ItemNotFound;
 import ouhk.comps380f.model.Item;
 
-/**
- *
- * @author j
- */
 public interface ItemService {
 
     public long createItem(String customerName, String subject,

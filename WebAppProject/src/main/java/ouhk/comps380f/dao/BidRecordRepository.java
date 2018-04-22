@@ -8,10 +8,6 @@ package ouhk.comps380f.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ouhk.comps380f.model.BidRecord;
 
-/**
- *
- * @author noctis
- */
 public interface BidRecordRepository extends JpaRepository<BidRecord, Long> {
     public BidRecord findByItemId(long ticketId);
 }

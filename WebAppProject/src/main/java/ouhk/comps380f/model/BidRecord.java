@@ -14,10 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author noctis
- */
+
 @Entity
 public class BidRecord implements Serializable {
 

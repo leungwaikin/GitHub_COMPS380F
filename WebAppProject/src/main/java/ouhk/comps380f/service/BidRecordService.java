@@ -7,10 +7,6 @@ package ouhk.comps380f.service;
 
 import ouhk.comps380f.model.BidRecord;
 
-/**
- *
- * @author noctis
- */
 public interface BidRecordService {
     public BidRecord getBidRecord(long ticketId);
 }

@@ -31,7 +31,7 @@ public class ItemController {
     private ItemService itemService;
     @Autowired
     private AttachmentService attachmentService;
-// Controller methods, Form object ...
+
 
     public static class CommentForm {
 

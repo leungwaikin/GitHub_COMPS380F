@@ -22,10 +22,7 @@ import ouhk.comps380f.exception.ItemNotFound;
 import ouhk.comps380f.model.BidUser;
 import ouhk.comps380f.model.UserRole;
 
-/**
- *
- * @author j
- */
+
 @Service
 public class BidUserService implements UserDetailsService {
 

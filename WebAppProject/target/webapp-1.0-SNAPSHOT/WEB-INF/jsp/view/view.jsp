@@ -77,6 +77,14 @@
                         <table class="table table-sm">
                             <thead>
                                 <tr>
+                                   <security:authorize access="hasRole('ADMIN')">
+                                     <td>
+                                    <button class="btn btn-danger" type="button" onclick="window.location.href = '<c:url value="/item/delete/${itemId}" />'">Delete item</button>
+                                   
+                                </td>
+                                     </security:authorize>
+                                </tr>
+                                <tr>
                                     <th scope="col" colspan="3"><h4 class="display-4">Item Name:<c:out value="${item.subject}" /></h4></th>
                                 </tr>
                             </thead>
@@ -154,11 +162,9 @@
    <security:authorize access = "!isAnonymous()">
                             <table>
                                 <tr>
-                                    <td>
-                                <security:authorize access="hasRole('ADMIN')">
-                                    <button class="btn btn-danger" type="button" onclick="window.location.href = '<c:url value="/item/delete/${itemId}" />'">Delete</button>
-                                </security:authorize>
-                                    </td>
+                                   
+                             
+                                    
                                      <security:authorize access="principal.username=='${item.customerName}'">
                                          <td>
                                     <c:if test="${item.status == 1}">
@@ -170,7 +176,7 @@
                                     </c:if>
                                      </td>
                                     <td>
-                                    <c:if test="${(item.bidusername!='NULL') and (item.status!=2)}">
+                                    <c:if test="${(item.bidusername!='commNULL') and (item.status!=2)}">
                                         <form method="POST" enctype="multipart/form-data" name="endform" action="endbid">
                                             <input type="hidden" name="id" value="${item.id}"/>
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -190,7 +196,7 @@
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
-                                        <button class="btn btn-link btn-lg btn-block"class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">                                            Comments
+                                        <button class="btn btn-link btn-lg btn-block"class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">                                            Comment(s)
                                         </button>
                                     </h5>
                                 </div>
@@ -202,7 +208,7 @@
                                                     <tbody>
                                                         <c:forEach items="${item.comments}" var="acomment">
                                                             <tr>
-                                                                <th scope="row">${acomment.username} say:</th>
+                                                                <th scope="row">${acomment.username} :</th>
                                                                 <td>${acomment.comment}</td>
                                                                 <security:authorize access="hasRole('ADMIN')">
                                                                     <td><button type="button" class="btn btn-primary" onclick="window.location.href = '<c:url value="${item.id}/comment/delete/${acomment.id}" />'">Remove</button></td>
@@ -218,10 +224,10 @@
                                         </c:choose>
                                         <hr class="my-4">
                                         <security:authorize access = "!isAnonymous()">
-                                            Leave your comment here 
+                                            Write comment for the item
                                             <form:form method="POST" enctype="multipart/form-data" modelAttribute="commentForm" action="${item.id}/comment">
                                                 <form:textarea path="comment" rows="2" cols="40" /><br/><br/>
-                                                <input class="btn btn-primary mb-2" type="submit" value="Leave My Comment"/>
+                                                <input class="btn btn-primary mb-2" type="submit" value="Leave it"/>
                                             </form:form>
                                         </security:authorize>
                                                 </br>

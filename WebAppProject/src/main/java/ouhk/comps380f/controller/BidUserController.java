@@ -26,10 +26,7 @@ import ouhk.comps380f.model.BidUser;
 import ouhk.comps380f.model.UserRole;
 import ouhk.comps380f.service.BidUserService;
 
-/**
- *
- * @author j
- */
+
 @Controller
 @RequestMapping("user")
 public class BidUserController {

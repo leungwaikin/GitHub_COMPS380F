@@ -10,10 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ouhk.comps380f.dao.BidRecordRepository;
 import ouhk.comps380f.model.BidRecord;
 
-/**
- *
- * @author noctis
- */
 public class BidRecordServiceImpl implements BidRecordService {
     @Resource
     private BidRecordRepository bidRecordRepo;

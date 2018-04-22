@@ -35,9 +35,9 @@
                 <form:form method="POST" enctype="multipart/form-data"
                            modelAttribute="bidUser">
                     <form:label path="username">Username</form:label><br/>
-                    <form:input type="text" path="username" required /><br/><br/>
+                    <form:input type="text" path="username"  /><br/><br/>
                     <form:label path="password">Password</form:label><br/>
-                     <input type="password" id="password" name="password" required/><br/><br/>
+                     <input type="password" id="password" name="password"/><br/><br/>
                     <form:hidden path="roles" value="ROLE_USER"/>
                     <br /><br />
                     <input type="submit" class="btn btn-primary" value="Register"/>

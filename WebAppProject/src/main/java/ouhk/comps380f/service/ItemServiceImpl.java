@@ -20,10 +20,7 @@ import ouhk.comps380f.model.BidRecord;
 import ouhk.comps380f.model.Comment;
 import ouhk.comps380f.model.Item;
 
-/**
- *
- * @author j
- */
+
 @Service
 public class ItemServiceImpl implements ItemService {
 

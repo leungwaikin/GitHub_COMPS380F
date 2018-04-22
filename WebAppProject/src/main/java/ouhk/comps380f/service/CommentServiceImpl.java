@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 import ouhk.comps380f.dao.CommentRepository;
 import ouhk.comps380f.model.Comment;
 
-/**
- *
- * @author Noctis
- */
+
 @Service
 public class CommentServiceImpl implements CommentService {
 

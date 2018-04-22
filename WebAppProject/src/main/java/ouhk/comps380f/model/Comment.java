@@ -15,10 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author Noctis
- */
 @Entity
 @Table(name="usercomment")
 public class Comment implements Serializable {

@@ -53,7 +53,7 @@
                     </br></br></br>
                     <c:choose>
                         <c:when test="${fn:length(itemDatabase) == 0}">
-                            <p class="lead"><i>There are no items in the system.</i></p> 
+                            <p class="lead"><i>No bidding items.</i></p> 
                         </c:when>
                         <c:otherwise>
                             <div class="item-gallery">

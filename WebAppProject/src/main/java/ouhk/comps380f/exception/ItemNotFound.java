@@ -5,10 +5,7 @@
  */
 package ouhk.comps380f.exception;
 
-/**
- *
- * @author j
- */
+
 public class ItemNotFound extends Exception{
     
 }

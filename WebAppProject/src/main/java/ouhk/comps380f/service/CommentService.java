@@ -7,10 +7,7 @@ package ouhk.comps380f.service;
 
 import ouhk.comps380f.model.Comment;
 
-/**
- *
- * @author Noctis
- */
+
 public interface CommentService {
 
     public Comment getComment(long ticketId, String username, String Comment);
