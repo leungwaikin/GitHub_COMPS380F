@@ -38,6 +38,7 @@
         <div class="container">
             <div class="jumbotron">
                 <h2>Users management</h2>
+                 
                 <c:choose>
                     <c:when test="${fn:length(bidUsers) == 0}">
                         <i>There are no users .</i>
@@ -75,6 +76,7 @@
                                 </tbody>
                             </c:forEach>
                         </table>
+                                               <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/user/addUserbyAdmin" />'">Add user</button>
                     </div> 
                     </c:otherwise>
                 </c:choose>

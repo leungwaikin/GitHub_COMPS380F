@@ -92,6 +92,24 @@ public class BidUserController {
         return new RedirectView("/item/list", true);
     }
 
+        @RequestMapping(value = "addUserbyAdmin", method = RequestMethod.GET)
+    public ModelAndView addUserbyAdmin() {
+        return new ModelAndView("addUserbyAdmin", "bidUser", new Form());
+    }
+
+    @RequestMapping(value = "addUserbyAdmin", method = RequestMethod.POST)
+    public View addUserbyAdmin(Form form) throws IOException {
+           
+           if(!bidUserRepo.exists(form.getUsername())){
+        BidUser user = new BidUser(form.getUsername(),
+                form.getPassword(), form.getRoles()
+        );
+        bidUserRepo.save(user);
+           }else {return new RedirectView("/addUserbyAdmin", true);}
+        return new RedirectView("/user", true);
+    }
+
+    
     @RequestMapping(value = "delete/{username}", method = RequestMethod.GET)
     public View deleteBid(@PathVariable("username") String username, HttpServletRequest request) {
         if (!request.isUserInRole("ROLE_ADMIN")) {
@@ -141,7 +159,7 @@ public class BidUserController {
         }
 
         UserService.updateUser(form.getUsername(), form.getPassword(), list);
-        return new RedirectView("/item/list", true);
+        return new RedirectView("/user", true);
     }
 
 }

@@ -45,13 +45,13 @@
                
                     </div>
                     <div class="form-group">
-                        <form:label path="password">password</form:label><br/>
+                        <form:label path="password">New password</form:label><br/>
                           <input type="password" id="password" name="password" required/><br/><br/><br/><br/>
                     </div>
                     <div class="form-group">
-                         <form:label path="roles">Roles</form:label><br/>
-                        <form:checkbox path="roles" value="ROLE_USER" />ROLE_USER
-                        <form:checkbox path="roles" value="ROLE_ADMIN" />ROLE_ADMIN
+                       
+                        <form:radiobutton path="roles" value="ROLE_USER" />ROLE_USER
+                        <form:radiobutton path="roles" value="ROLE_ADMIN" />ROLE_ADMIN
                     </div>
                           <br/><br/>
                     <input type="submit"class="btn btn-primary" value="Save"/>
