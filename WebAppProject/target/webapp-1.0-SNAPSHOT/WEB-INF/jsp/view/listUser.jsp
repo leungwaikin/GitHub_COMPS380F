@@ -43,7 +43,7 @@
                         <i>There are no users .</i>
                     </c:when>
                     <c:otherwise>
-
+                        <div class="user-table">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -75,6 +75,7 @@
                                 </tbody>
                             </c:forEach>
                         </table>
+                    </div> 
                     </c:otherwise>
                 </c:choose>
 
