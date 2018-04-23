@@ -47,7 +47,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Username</th><th>Password</th><th>Roles</th><th>Action</th>
+                                    <th>Username</th><th>Password</th><th>Role(s)</th><th>Actions</th>
                                 </tr>
                             </thead>
                             <c:forEach items="${bidUsers}" var="user">

@@ -111,9 +111,9 @@
                                            
                                        
                                     
-                                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                         <!--   <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                           detail
-                                                </button></td>
+                                                </button></td>-->
                                                  </c:when>
                                          
                                         </c:choose>

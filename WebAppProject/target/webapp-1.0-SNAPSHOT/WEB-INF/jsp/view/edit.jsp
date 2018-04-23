@@ -37,21 +37,25 @@
         </nav>
         <div class="container">
             <div class="jumbotron">   
-                <h1 class="display-4">Update User Information</h1>
+                <h1 class="display-4">Update ${username}'s information</h1>
+                
+                 
                 <form:form method="POST" enctype="multipart/form-data" modelAttribute="UserForm">
                     <div class="form-group">
-                        <form:label path="username">username</form:label><br/>
-                        <form:input type="text" path="username" required="required"/><br/><br/>
+                      
+                       <br/><br/>
                     </div>
                     <div class="form-group">
                         <form:label path="password">password</form:label><br/>
                           <input type="password" id="password" name="password" required/><br/><br/><br/><br/>
                     </div>
+                       
                     <div class="form-group">
                          <form:label path="roles">Roles</form:label><br/>
                         <form:checkbox path="roles" value="ROLE_USER" />ROLE_USER
                         <form:checkbox path="roles" value="ROLE_ADMIN" />ROLE_ADMIN
                     </div>
+                       <br/><br/>
                     <input type="submit"class="btn btn-primary" value="Save"/>
                 </form:form>
                  
