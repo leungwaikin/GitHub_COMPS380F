@@ -38,6 +38,7 @@
         <div class="container">
             <div class="jumbotron">
                 <h2>Users management</h2>
+                 
                 <c:choose>
                     <c:when test="${fn:length(bidUsers) == 0}">
                         <i>There are no users .</i>
@@ -47,7 +48,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Username</th><th>Password</th><th>Roles</th><th>Action</th>
+                                    <th>Username</th><th>Password</th><th>Role</th><th>Actions</th>
                                 </tr>
                             </thead>
                             <c:forEach items="${bidUsers}" var="user">
@@ -75,9 +76,11 @@
                                 </tbody>
                             </c:forEach>
                         </table>
+                  
                     </div> 
                     </c:otherwise>
                 </c:choose>
+                           <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/user/addUserbyAdmin" />'">Add user</button>
 
             </div> </div> 
 

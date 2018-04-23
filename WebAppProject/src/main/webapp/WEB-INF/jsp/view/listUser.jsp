@@ -76,10 +76,11 @@
                                 </tbody>
                             </c:forEach>
                         </table>
-                                               <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/user/addUserbyAdmin" />'">Add user</button>
+                  
                     </div> 
                     </c:otherwise>
                 </c:choose>
+                           <button class="btn btn-dark" type="button" onclick="window.location.href = '<c:url value="/user/addUserbyAdmin" />'">Add user</button>
 
             </div> </div> 
 

@@ -42,25 +42,20 @@
                 <div class="row">
                     <div class="col-sm">
                         
-                            </ol>
+                         
                             <c:choose>
                                 <c:when test="${fn:length(item.attachments) > 0}">
-                                    <div class="carousel-inner">
+                                 
                                         <c:forEach items="${item.attachments}" var="attachment" varStatus="status">
-                                            <c:choose>
-                                                <c:when test="${status.first}">                                  
+                                       
+                                                <c:if test="${status.first}">                                  
                                                     <div class="carousel-item active">
                                                         <img class="d-block w-100"  src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
                                                     </div>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <div class="carousel-item">
-                                                        <img class="d-block w-100"  src="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
-                                                    </div>
-                                                </c:otherwise>
-                                            </c:choose>
+                                                </c:if>
+                                             
                                         </c:forEach>
-                                    </div>
+                                   
                                 </c:when>
                                 <c:otherwise>
                                    
@@ -86,7 +81,7 @@
                                      </security:authorize>
                                 </tr>
                                 <tr>
-                                    <th scope="col" colspan="3"><h4 class="display-4">Item Name:<c:out value="${item.subject}" /></h4></th>
+                                    <th scope="col" colspan="3"><h4 class="display-4">Name:<c:out value="${item.subject}" /></h4></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,9 +106,6 @@
                                            
                                        
                                     
-                                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                          detail
-                                                </button></td>
                                                  </c:when>
                                          
                                         </c:choose>
