@@ -36,6 +36,11 @@ body {
     border: none;
     transition: 0.15s ease-in-out;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+    text-align:center;
+    padding:20px;
+}
+.item-header{
+  text-align:center;     
 }
 
 .item-gallery .thumbnail:hover {
@@ -65,4 +70,13 @@ body {
 
 .baguetteBox-button {
     background-color: transparent !important;
+}
+
+form{
+    margin:1%;  
+}
+
+.user-table td{
+    vertical-align: middle;
+    
 }
