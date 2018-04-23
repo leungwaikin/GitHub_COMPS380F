@@ -61,12 +61,15 @@
                                             </c:forEach>
                                         </td>
                                         <td>               
-                              
+                                  
+                                               <c:forEach items="${user.roles}" var="role" varStatus="status">
                                             <security:authorize access = "principal.username!='${user.username}'">
+                                                <c:if test="${role.role=='ROLE_USER'}">
                                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '<c:url value="/user/edit/${user.username}" />'">Update</button>
                                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '<c:url value="/user/delete/${user.username}" />'">Delete</button>
+                                                </c:if>
                                             </security:authorize>
-                                  
+                                       </c:forEach>
                                         </td>
                                     </tr>
                                 </tbody>

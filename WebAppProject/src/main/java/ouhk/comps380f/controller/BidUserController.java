@@ -82,10 +82,13 @@ public class BidUserController {
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public View create(Form form) throws IOException {
+           
+           if(!bidUserRepo.exists(form.getUsername())){
         BidUser user = new BidUser(form.getUsername(),
                 form.getPassword(), form.getRoles()
         );
         bidUserRepo.save(user);
+           }else {return new RedirectView("/user/create", true);}
         return new RedirectView("/item/list", true);
     }
 
